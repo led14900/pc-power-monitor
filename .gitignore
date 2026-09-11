@@ -1,0 +1,20 @@
+## Build output
+bin/
+obj/
+publish/
+dist/
+
+## Runtime data / logs / local db
+*.db
+*.db-wal
+*.db-shm
+*.log
+
+## IDE
+.vs/
+*.user
+*.suo
+
+## OS
+desktop.ini
+Thumbs.db

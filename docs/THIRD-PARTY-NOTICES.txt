@@ -1,0 +1,103 @@
+================================================================================
+PC Power Monitor - THÔNG BÁO THÀNH PHẦN BÊN THỨ BA (THIRD-PARTY NOTICES)
+================================================================================
+
+Phần mềm này (PC Power Monitor, giấy phép MIT - xem tệp LICENSE) sử dụng các thư
+viện nguồn mở dưới đây. Mỗi thư viện giữ nguyên giấy phép riêng của nó. Danh sách
+version bên dưới khớp với các tệp .csproj tại thời điểm phát hành 1.0.0.
+
+--------------------------------------------------------------------------------
+1. LibreHardwareMonitorLib 0.9.4
+--------------------------------------------------------------------------------
+Giấy phép : Mozilla Public License 2.0 (MPL-2.0)
+Nguồn     : https://github.com/LibreHardwareMonitor/LibreHardwareMonitor
+Vai trò   : Đọc cảm biến phần cứng (công suất, nhiệt độ, xung nhịp, quạt) qua
+            driver kernel WinRing0.
+
+Thư viện được sử dụng ở dạng liên kết động (NuGet), không chỉnh sửa mã nguồn.
+Theo MPL-2.0, việc dùng ở dạng liên kết ("Larger Work") không bắt buộc PC Power
+Monitor phải mở mã nguồn. Nghĩa vụ đã thực hiện: (a) giữ nguyên thông báo bản
+quyền, (b) nêu rõ có sử dụng thư viện và dẫn tới mã nguồn gốc (URL ở trên, cũng
+hiển thị trong màn hình "Giới thiệu" của ứng dụng).
+
+Thông báo giấy phép MPL-2.0 (bản rút gọn tiêu chuẩn):
+
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+Toàn văn giấy phép MPL-2.0: https://www.mozilla.org/en-US/MPL/2.0/
+Mã nguồn của bất kỳ tệp nào thuộc LibreHardwareMonitorLib (nếu được yêu cầu theo
+Mục 3.2 của MPL-2.0) có sẵn tại kho lưu trữ GitHub nêu trên. PC Power Monitor
+không sửa đổi các tệp này.
+
+--------------------------------------------------------------------------------
+2. ScottPlot / ScottPlot.WPF 5.0.47
+--------------------------------------------------------------------------------
+Giấy phép : MIT
+Nguồn     : https://github.com/ScottPlot/ScottPlot
+Vai trò   : Vẽ biểu đồ công suất theo thời gian và biểu đồ báo cáo.
+
+--------------------------------------------------------------------------------
+3. H.NotifyIcon.Wpf 2.2.0
+--------------------------------------------------------------------------------
+Giấy phép : MIT
+Nguồn     : https://github.com/HavenDV/H.NotifyIcon
+Vai trò   : Biểu tượng khay hệ thống (system tray) và menu ngữ cảnh.
+
+--------------------------------------------------------------------------------
+4. CommunityToolkit.Mvvm 8.3.2
+--------------------------------------------------------------------------------
+Giấy phép : MIT
+Nguồn     : https://github.com/CommunityToolkit/dotnet
+Vai trò   : Bộ khung MVVM (ObservableObject, RelayCommand, source generator).
+
+--------------------------------------------------------------------------------
+5. Microsoft.Data.Sqlite 8.0.10
+--------------------------------------------------------------------------------
+Giấy phép : MIT
+Nguồn     : https://github.com/dotnet/efcore
+Vai trò   : Lưu trữ mẫu đo và dữ liệu tổng hợp trong CSDL SQLite cục bộ.
+Ghi chú   : Kèm theo native "e_sqlite3.dll" của dự án SQLitePCLRaw
+            (https://github.com/ericsink/SQLitePCL.raw, giấy phép Apache-2.0).
+
+--------------------------------------------------------------------------------
+6. Microsoft.Extensions.Hosting 8.0.1
+   (kéo theo Microsoft.Extensions.DependencyInjection / Logging / Options 8.0.x)
+--------------------------------------------------------------------------------
+Giấy phép : MIT
+Nguồn     : https://github.com/dotnet/runtime
+Vai trò   : Generic Host, DI container, cấu hình, vòng đời hosted service.
+
+--------------------------------------------------------------------------------
+7. Microsoft.Win32.SystemEvents 8.0.0
+--------------------------------------------------------------------------------
+Giấy phép : MIT
+Nguồn     : https://github.com/dotnet/winforms
+Vai trò   : Nhận sự kiện nguồn/phiên của Windows (ngủ, thức, khoá máy) để tạm
+            dừng và tiếp tục việc lấy mẫu.
+
+--------------------------------------------------------------------------------
+8. Serilog  +  Serilog.Sinks.File 6.0.0  +  Serilog.Extensions.Hosting 8.0.0
+   +  Serilog.Extensions.Logging 8.0.0
+--------------------------------------------------------------------------------
+Giấy phép : Apache License 2.0
+Nguồn     : https://github.com/serilog/serilog
+            https://github.com/serilog/serilog-sinks-file
+            https://github.com/serilog/serilog-extensions-hosting
+            https://github.com/serilog/serilog-extensions-logging
+Vai trò   : Ghi log ra tệp cuộn theo ngày trong %LOCALAPPDATA%\PcPowerMonitor\logs.
+Ghi chú   : Serilog (thư viện lõi) được kéo vào ở dạng phụ thuộc bắc cầu của các
+            gói trên. Toàn văn Apache-2.0: https://www.apache.org/licenses/LICENSE-2.0
+
+--------------------------------------------------------------------------------
+Runtime .NET 8 (self-contained)
+--------------------------------------------------------------------------------
+Bản cài kèm theo .NET 8 Desktop Runtime của Microsoft (giấy phép MIT, kèm điều
+khoản riêng cho một số cấu phần). Xem https://github.com/dotnet/runtime và
+https://dotnet.microsoft.com/ để biết chi tiết.
+
+================================================================================
+Nếu bạn cho rằng có thành phần chưa được liệt kê đúng, vui lòng báo lại để chúng
+tôi cập nhật tệp này.
+================================================================================

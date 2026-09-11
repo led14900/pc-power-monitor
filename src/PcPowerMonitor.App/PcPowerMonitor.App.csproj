@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RootNamespace>PcPowerMonitor.App</RootNamespace>
+    <AssemblyName>PcPowerMonitor.App</AssemblyName>
+
+    <!-- Single source of truth for the app version (Directory.Build.props keeps
+         Company/Product/Copyright; version lives here per phase-10). -->
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+
+    <!-- Sets the .exe icon. Assets\app-icon.ico is a copy of the tray icon. -->
+    <ApplicationIcon>Assets\app-icon.ico</ApplicationIcon>
+
+    <!-- Publish defaults. The self-contained / single-file / RID switches are passed
+         as -p: flags by build/publish.ps1 so a bare `dotnet build` / `dotnet test`
+         is not forced into a runtime-specific restore. Only the harmless publish
+         tuning lives here.
+         PublishTrimmed MUST stay false: WPF, LibreHardwareMonitorLib and ScottPlot
+         all resolve types via reflection at runtime — trimming removes them and
+         crashes the app. -->
+    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageReference Include="H.NotifyIcon.Wpf" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <PackageReference Include="ScottPlot.WPF" Version="5.0.47" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PcPowerMonitor.Core\PcPowerMonitor.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Tray icon, embedded as a WPF resource; loaded via pack URI with a File-guard fallback. -->
+    <Resource Include="Assets\tray-icon.ico" />
+  </ItemGroup>
+
+</Project>

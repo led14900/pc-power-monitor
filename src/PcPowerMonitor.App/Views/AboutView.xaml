@@ -1,0 +1,52 @@
+<Window x:Class="PcPowerMonitor.App.Views.AboutView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Giới thiệu — PC Power Monitor"
+        Width="520" Height="480" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource PageBackgroundBrush}">
+    <DockPanel Margin="16">
+        <Border DockPanel.Dock="Bottom" Style="{StaticResource CardBorder}" Padding="10" Margin="0,12,0,0">
+            <TextBlock TextWrapping="Wrap" Style="{StaticResource MetricCaption}"
+                       Text="{Binding Disclaimer}" />
+        </Border>
+
+        <Button DockPanel.Dock="Bottom" Content="Đóng" HorizontalAlignment="Right"
+                MinWidth="90" Margin="0,12,0,0" Style="{StaticResource RangeButton}"
+                IsCancel="True" IsDefault="True" Click="OnClose" />
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="PC Power Monitor" Style="{StaticResource PageTitle}" />
+                <TextBlock Text="{Binding VersionLine}" Style="{StaticResource MetricCaption}" Margin="0,2,0,0" />
+                <TextBlock Text="© 2026 PC Power Monitor — Giấy phép MIT"
+                           Style="{StaticResource MetricCaption}" Margin="0,2,0,0" />
+
+                <TextBlock Text="{Binding OfflineNote}" Style="{StaticResource MetricCaption}"
+                           TextWrapping="Wrap" Margin="0,10,0,0" />
+
+                <TextBlock Text="Thư viện bên thứ ba" FontWeight="SemiBold"
+                           Foreground="{StaticResource TextBrush}" Margin="0,14,0,4" />
+                <Border Style="{StaticResource CardBorder}" Padding="8" MinWidth="0">
+                    <ItemsControl ItemsSource="{Binding Licenses}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="0,2"
+                                           Style="{StaticResource MetricCaption}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+
+                <TextBlock Margin="0,10,0,0" TextWrapping="Wrap" Style="{StaticResource MetricCaption}"
+                           Text="Chi tiết giấy phép: xem tệp THIRD-PARTY-NOTICES.txt trong thư mục cài đặt." />
+
+                <TextBlock Margin="0,8,0,0">
+                    <Hyperlink NavigateUri="{Binding LhmSource}" RequestNavigate="OnNavigate">
+                        <Run Text="{Binding SourceLinkText, Mode=OneWay}" />
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

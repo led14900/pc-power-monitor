@@ -1,0 +1,52 @@
+<UserControl x:Class="PcPowerMonitor.App.Views.HardwareView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="{StaticResource PageBackgroundBrush}">
+    <Grid Margin="16">
+        <TextBlock Text="{Binding EmptyMessage}" Style="{StaticResource MetricCaption}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   TextWrapping="Wrap" MaxWidth="420" TextAlignment="Center"
+                   Visibility="{Binding HasData, Converter={StaticResource BoolToVis},
+                                ConverterParameter=invert}" />
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}">
+            <ItemsControl ItemsSource="{Binding Groups}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardBorder}" Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" Style="{StaticResource PageTitle}"
+                                           FontSize="15" Margin="0,0,0,8" />
+                                <ItemsControl ItemsSource="{Binding Items}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="0,3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="110" />
+                                                    <ColumnDefinition Width="70" />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0" Text="{Binding Name}"
+                                                           Foreground="{StaticResource TextBrush}" />
+                                                <TextBlock Grid.Column="1" HorizontalAlignment="Right"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{StaticResource TextBrush}"
+                                                           Text="{Binding Value,
+                                                                  Converter={StaticResource NullableDouble},
+                                                                  ConverterParameter=0.#}" />
+                                                <TextBlock Grid.Column="2" Margin="8,0,0,0"
+                                                           Foreground="{StaticResource MutedTextBrush}"
+                                                           Text="{Binding Unit}" />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

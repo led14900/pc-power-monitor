@@ -1,0 +1,22 @@
+<UserControl x:Class="PcPowerMonitor.App.Controls.PowerGauge"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <Border Style="{StaticResource CardBorder}">
+        <StackPanel>
+            <TextBlock Text="Công suất hiện tại" Style="{StaticResource MetricCaption}" />
+            <StackPanel Orientation="Horizontal" Margin="0,4,0,0" VerticalAlignment="Bottom">
+                <TextBlock Style="{StaticResource MetricValueLarge}"
+                           Text="{Binding DisplayWatt, ElementName=Root, StringFormat={}{0:N0}}" />
+                <TextBlock Text="W" Style="{StaticResource MetricUnit}" Margin="6,0,0,6" />
+            </StackPanel>
+            <ProgressBar Height="12" Margin="0,12,0,0"
+                         Minimum="0"
+                         Maximum="{Binding MaxWatt, ElementName=Root}"
+                         Value="{Binding DisplayWatt, ElementName=Root}"
+                         Foreground="{StaticResource AccentBrush}"
+                         Background="{StaticResource TrackBrush}"
+                         BorderThickness="0" />
+        </StackPanel>
+    </Border>
+</UserControl>

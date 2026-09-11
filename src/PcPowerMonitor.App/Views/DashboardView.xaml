@@ -1,0 +1,66 @@
+<UserControl x:Class="PcPowerMonitor.App.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:PcPowerMonitor.App.Controls"
+             xmlns:views="clr-namespace:PcPowerMonitor.App.Views"
+             Background="{StaticResource PageBackgroundBrush}">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0" Orientation="Horizontal">
+            <controls:PowerGauge Width="260" Margin="0,0,12,12"
+                                 Watt="{Binding Dashboard.CurrentWatt}" MaxWatt="600" />
+
+            <Border Style="{StaticResource CardBorder}" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Text="Điện năng hôm nay" Style="{StaticResource MetricCaption}" />
+                    <TextBlock Style="{StaticResource MetricValue}"
+                               Text="{Binding Dashboard.TodayKwh, StringFormat={}{0:N2} kWh}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardBorder}" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Text="Tiền điện hôm nay (ước tính)" Style="{StaticResource MetricCaption}" />
+                    <TextBlock Style="{StaticResource MetricValue}"
+                               Text="{Binding Dashboard.TodayCostVnd, Converter={StaticResource Vnd}}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardBorder}" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Text="Trung bình / Đỉnh hôm nay" Style="{StaticResource MetricCaption}" />
+                    <TextBlock Style="{StaticResource MetricValue}">
+                        <Run Text="{Binding Dashboard.AvgWatt, StringFormat={}{0:N0}}" />
+                        <Run Text="/" Foreground="{StaticResource MutedTextBrush}" />
+                        <Run Text="{Binding Dashboard.PeakWatt, StringFormat={}{0:N0} W}" />
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardBorder}" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Text="Thời gian máy chạy hôm nay" Style="{StaticResource MetricCaption}" />
+                    <TextBlock Style="{StaticResource MetricValue}" Text="{Binding Dashboard.UptimeText}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource BadgeBorder}" Margin="0,0,12,12">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Chất lượng: " Foreground="{StaticResource MutedTextBrush}" />
+                    <TextBlock Text="{Binding Dashboard.QualityText}" FontWeight="SemiBold"
+                               Foreground="{StaticResource TextBrush}" />
+                    <TextBlock Text="{Binding Dashboard.QualityErrorText, StringFormat={} ({0})}"
+                               Foreground="{StaticResource MutedTextBrush}" />
+                </StackPanel>
+            </Border>
+        </WrapPanel>
+
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,4,0,0">
+            <views:PowerChartView DataContext="{Binding Chart}" />
+        </Border>
+    </Grid>
+</UserControl>
